@@ -1,0 +1,2 @@
+You'll have to concatenate all the split randomized_cr_df's before using them to plot, but this should be easily doable e.g. in python with
+``pd.concat`` or something similar.
