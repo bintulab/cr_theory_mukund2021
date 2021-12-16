@@ -404,7 +404,7 @@ for t in 0:0.01:10
         if t == 0
             d = 0.0
         end
-        push!(t_vals, t)
+        push!(t_vals, t * 2)
         push!(k_vals, k)
         push!(d_vals, d)
     end
@@ -416,7 +416,7 @@ data = DataFrame(Dict("Period of Oscillation" => t_vals,
 
 function get_pt_annotation(x, y, color="red")
     return g.Guide.annotation(compose(context(), 
-                                      Compose.circle(x, y, 0.12), 
+                                      Compose.circle(x, y, 0.24), 
                                       Compose.stroke("white"),
                                       Compose.linewidth(0.5),
                                       fill(color), 
@@ -428,13 +428,13 @@ palette = [colorant"skyblue", colorant"purple", colorant"green", colorant"darkor
 palette = [colorant"grey25", colorant"darkorange", colorant"green", colorant"purple"]
 
 p = g.plot(data, x="Period of Oscillation", y="Rate of Silencing (1/days)", color="Amplitude",
-           g.Geom.rectbin, g.Guide.xticks(ticks=collect(0:1:5)), g.Guide.yticks(ticks=collect(0:1:5)),
-           g.Coord.cartesian(xmin=0, xmax=5, ymin=0, ymax=5, aspect_ratio=1),
+           g.Geom.rectbin, g.Guide.xticks(ticks=collect(0:2:10)), g.Guide.yticks(ticks=collect(0:2:10)),
+           g.Coord.cartesian(xmin=0, xmax=10, ymin=0, ymax=10, aspect_ratio=1),
            g.Scale.ContinuousColorScale(p -> get(ColorSchemes.viridis, p)),
-           get_pt_annotation(3.0, 1.0, palette[1]),
-           get_pt_annotation(0.25, 1.0, palette[2]),
-           get_pt_annotation(3.0, 3.0, palette[4]),
-           get_pt_annotation(0.25, 3.0, palette[3]),
+           get_pt_annotation(6.0, 1.0, palette[1]),
+           get_pt_annotation(0.5, 1.0, palette[2]),
+           get_pt_annotation(6.0, 3.0, palette[4]),
+           get_pt_annotation(0.5, 3.0, palette[3]),
            g.Theme(major_label_font="ArialMT", minor_label_font="ArialMT",
                    key_title_font="ArialMT", key_label_font="ArialMT", key_label_color="black",
                    grid_color="black",
